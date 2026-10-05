@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sky & Wonka 釜山之旅 2026 🐒🍌</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        nici: {
+                            dark: '#4A3020',    /* NICI Monkey Brown Body */
+                            mid: '#6A4A32',     /* Accent Brown */
+                            cream: '#F3E5AB',   /* Face / Snout Cream */
+                            beige: '#EBD8B3',   /* Soft Inner Ear Beige */
+                            yellow: '#FFE066',  /* Banana Yellow Accent */
+                            banana: '#FFD166',  /* Deep Yellow */
+                            bg: '#FAF6EE',      /* Plush Soft Warm BG */
+                            card: '#FFFDF9',    /* Card BG */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Fredoka', 'Zen Maru Gothic', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        'plush': '24px',
+                        'plush-sm': '16px',
+                        'plush-lg': '32px'
+                    },
+                    boxShadow: {
+                        'plush': '0 8px 20px -4px rgba(74, 48, 32, 0.15), 0 4px 6px -2px rgba(74, 48, 32, 0.05)',
+                        'plush-inner': 'inset 0 2px 4px 0 rgba(74, 48, 32, 0.06)',
+                        'nici-btn': '0 6px 0 0 #4A3020',
+                        'nici-btn-active': '0 2px 0 0 #4A3020',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #FAF6EE;
+            color: #4A3020;
+            font-family: 'Fredoka', 'Zen Maru Gothic', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* NICI Plush Monkey Ears Header Decoration */
+        .monkey-ear-left, .monkey-ear-right {
+            position: absolute;
+            top: -12px;
+            width: 32px;
+            height: 32px;
+            background-color: #4A3020;
+            border-radius: 50%;
+            z-index: 0;
+        }
+        .monkey-ear-left::after, .monkey-ear-right::after {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            width: 20px;
+            height: 20px;
+            background-color: #F3E5AB;
+            border-radius: 50%;
+        }
+        .monkey-ear-left { left: 20px; }
+        .monkey-ear-right { right: 20px; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF6EE;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #EBD8B3;
+            border-radius: 10px;
+        }
+
+        /* Spring Bouncy Transition */
+        .tab-content {
+            display: none;
+            animation: bounceIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: translateY(12px) scale(0.98); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Custom Checkbox */
+        .nici-checkbox:checked + label {
+            text-decoration: line-through;
+            opacity: 0.55;
+        }
+
+        /* Banana Badge Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(-5deg); }
+            50% { transform: translateY(-6px) rotate(5deg); }
+        }
+        .floating-banana {
+            animation: float 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="pb-24 pt-4 px-3 max-w-md mx-auto min-h-screen flex flex-col justify-between selection:bg-nici-yellow selection:text-nici-dark">
+
+    <header class="relative bg-nici-dark text-nici-cream p-5 rounded-plush shadow-plush text-center mt-3 border-4 border-nici-dark">
+        <!-- Monkey Ears -->
+        <div class="monkey-ear-left"></div>
+        <div class="monkey-ear-right"></div>
+        
+        <div class="relative z-10">
+            <!-- NICI Monkey Eyes & Snout Badge -->
+            <div class="inline-flex items-center justify-center bg-nici-cream text-nici-dark px-4 py-1 rounded-full font-bold text-xs mb-1 border-2 border-nici-dark shadow-sm">
+                <span class="mr-1">🐵</span> Sky & Wonka's Busan Trip
+            </div>
+            <h1 class="text-2xl font-bold tracking-wide text-nici-yellow drop-shadow">釜山之旅 2026 🍌</h1>
+            <p class="text-xs text-nici-beige mt-1 font-medium"><i class="fa-regular fa-calendar-days mr-1"></i>2026 年 10 月 8 日 – 10 月 13 日 (6 Days)</p>
+        </div>
+    </header>
+
+    <main class="mt-4 flex-1">
+        
+        <!-- SECTION 1: ITINERARY TAB -->
+        <section id="tab-itinerary" class="tab-content active">
+            <!-- Day Selector Horizontal Scroll -->
+            <div class="flex space-x-2 overflow-x-auto pb-3 pt-1 no-scrollbar scroll-smooth">
+                <button onclick="switchDay(1)" id="day-btn-1" class="day-btn flex-shrink-0 px-4 py-2.5 rounded-plush-sm font-bold text-sm bg-nici-dark text-nici-yellow shadow-plush border-2 border-nici-dark transition-all">
+                    10/8 (三) Day 1
+                </button>
+                <button onclick="switchDay(2)" id="day-btn-2" class="day-btn flex-shrink-0 px-4 py-2.5 rounded-plush-sm font-bold text-sm bg-nici-cream text-nici-dark shadow-sm border-2 border-nici-dark/20 transition-all">
+                    10/9 (四) Day 2
+                </button>
+                <button onclick="switchDay(3)" id="day-btn-3" class="day-btn flex-shrink-0 px-4 py-2.5 rounded-plush-sm font-bold text-sm bg-nici-cream text-nici-dark shadow-sm border-2 border-nici-dark/20 transition-all">
+                    10/10 (五) Day 3
+                </button>
+                <button onclick="switchDay(4)" id="day-btn-4" class="day-btn flex-shrink-0 px-4 py-2.5 rounded-plush-sm font-bold text-sm bg-nici-cream text-nici-dark shadow-sm border-2 border-nici-dark/20 transition-all">
+                    10/11 (六) Day 4
+                </button>
+                <button onclick="switchDay(5)" id="day-btn-5" class="day-btn flex-shrink-0 px-4 py-2.5 rounded-plush-sm font-bold text-sm bg-nici-cream text-nici-dark shadow-sm border-2 border-nici-dark/20 transition-all">
+                    10/12 (日) Day 5
+                </button>
+                <button onclick="switchDay(6)" id="day-btn-6" class="day-btn flex-shrink-0 px-4 py-2.5 rounded-plush-sm font-bold text-sm bg-nici-cream text-nici-dark shadow-sm border-2 border-nici-dark/20 transition-all">
+                    10/13 (一) Day 6
+                </button>
+            </div>
+
+            <!-- DAY 1 CONTENT -->
+            <div id="day-content-1" class="day-content space-y-3 mt-2">
+                <div class="bg-nici-cream/60 border-2 border-nici-dark/20 p-3 rounded-plush-sm flex items-center justify-between text-xs font-semibold">
+                    <span><i class="fa-solid fa-hotel text-nici-dark mr-1"></i>住宿：海雲台地區 (Haeundae)</span>
+                    <span class="bg-nici-yellow text-nici-dark px-2 py-0.5 rounded-full border border-nici-dark/30">Day 1</span>
+                </div>
+
+                <!-- Timeline Item -->
+                <div class="bg-nici-card border-2 border-nici-dark p-4 rounded-plush shadow-plush relative">
+                    <div class="flex items-center justify-between border-b-2 border-dashed border-nici-beige pb-2 mb-2">
+                        <span class="bg-nici-dark text-nici-yellow text-xs font-bold px-2.5 py-1 rounded-full"><i class="fa-solid fa-plane-arrival mr-1"></i>06:20</span>
+                        <span class="text-xs font-bold text-nici-mid">金海國際機場 (PUS)</span>
+                    </div>
+                    <p class="text-sm font-bold text-nici-dark">抵達釜山金海機場 🛬</p>
+                    <p class="text-xs text-nici-dark/70 mt-1">辦理入境手續、領取行李與隨身 Wi-Fi。</p>
+                </div>
+
+                <div class="bg-nici-card border-2 border-nici-dark p-4 rounded-plush shadow-plush relative">
+                    <div class="flex items-center justify-between border-b-2 border-dashed border-nici-beige pb-2 mb-2">
+                        <span class="bg-nici-dark text-nici-yellow text-xs font-bold px-2.5 py-1 rounded-full"><i class="fa-solid fa-suitcase mr-1"></i>07:30 - 08:30</span>
+                        <a href="https://map.naver.com/v5/search/%ED%95%B4%EC%9A%B4%EB%8C%80" target="_blank" class="text-xs font-bold text-blue-700 underline"><i class="fa-solid fa-location-dot mr-1"></i>Naver Map</a>
+                    </div>
+                    <p class="text-sm font-bold text-nici-dark">海雲台酒店寄存行李 🧳</p>
+                    <p class="text-xs text-nici-dark/70 mt-1">搭乘地圖路線至海雲台區飯店先寄存行李。</p>
+                </div>
+
+                <div class="bg-nici-card border-2 border-nici-dark p-4 rounded-plush shadow-plush relative">
+                    <div class="flex items-center justify-between border-b-2 border-dashed border-nici-beige pb-2 mb-2">
+                        <span class="bg-nici-dark text-nici-yellow text-xs font-bold px-2.5 py-1 rounded-full"><i class="fa-solid fa-bag-shopping mr-1"></i>09:00 - 12:00</span>
+                        <div class="space-x-1">
+                            <a href="https://map.naver.com/v5/search/%EC%BD%94%EC%8A%A4%ED%8A%B8%EC%BD%94%20%EB%B6%80%EC%82%B0" target="_blank" class="text-xs font-bold text-blue-700 underline">Costco</a>
+                            <span class="text-xs text-nici-dark/40">|</span>
+                            <a href="https://map.naver.com/v5/search/%EB%A1%AF%EB%8D%B0%EC%95%84%EC%9B%83%EB%A0%9B%20%EB%8F%99%EB%B6%80%EC%82%B0" target="_blank" class="text-xs font-bold text-blue-700 underline">Lotte Outlet</a>
+                        </div>
+                    </div>
+                    <p class="text-sm font-bold text-nici-dark">Costco 釜山店 或 樂天 Outlets 東釜山店 🛍️</p>
+                    <p class="text-xs text-nici-dark/70 mt-1">購物商場巡禮與逛街採買。</p>
+                </div>
+
+                <div class="bg-nici-beige/40 border-2 border-dashed border-nici-dark/30 p-3.5 rounded-plush">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold text-nici-dark"><i class="fa-solid fa-utensils mr-1"></i>午餐 Lunch</span>
+                        <span class="text-xs italic text-nici-dark/60">[ 自由挑選美食 / Blank ]</span>
+                    </div>
+                </div>
+
+                <div class="bg-nici-card border-2 border-nici-dark p-4 rounded-plush shadow-plush relative">
+                    <div class="flex items-center justify-between border-b-2 border-dashed border-nici-beige pb-2 mb-2">
+                        <span class="bg-nici-dark text-nici-yellow text-xs font-bold px-2.5 py-1 rounded-full"><i class="fa-solid fa-key mr-1"></i>14:30 - 15:30</span>
+                    </div>
+                    <p class="text-sm font-bold text-nici-dark">飯店 Check-in 入住休息 🔑</p>
+                    <p class="text-xs text-nici-dark/70 mt-1">辦理入住並稍作休息準備啟動 Visit Busan Pass。</p>
+                </div>
+
+                <div class="bg-nici-yellow/30 border-2 border-nici-dark p-4 rounded-plush shadow-plush relative">
+                    <div class="flex items-center justify-between border-b-2 border-dashed border-nici-dark/20 pb-2 mb-2">
+                        <span class="bg-nici-dark text-nici-yellow text-xs font-bold px-2.5 py-1 rounded-full"><i class="fa-solid fa-ship mr-1"></i>16:30</span>
+                        <a href="https://map.naver.com/v5/search/%EB%8B%A4%EC%9D%B4%EC%95%84%EB%AA%AC%EB%93%9C%EB%B2%A0%EC%9D%B4" target="_blank" class="text-xs font-bold text-blue-700 underline"><i class="fa-solid fa-location-dot mr-1"></i>Naver Map</a>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <p class="text-sm font-bold text-nici-dark">鑽石灣遊艇 Diamond Bay Cruise ⛵</p>
+                            <p class="text-xs text-nici-dark/80 mt-1">🎟️ <strong>Visit Busan Pass 24hr 啟動！</strong> (使用首個景點)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-nici-card border-2 border-nici-dark p-4 rounded-plush shadow-plush relative">
+                    <div class="flex items-center justify-between border-b-2 border-dashed border-nici-beige pb-2 mb-2">
+                        <span class="bg-nici-dark text-nici-yellow text-xs font-bold px-2.5 py-1 rounded-full"><i class="fa-solid fa-hot-tub-person mr-1"></i>18:00 - 20:30</span>
+                        <a href="https://map.naver.com/v5/search/%ED%81%B4%EB%9F%AC%EB%B8%8C%EB%94%94%EC%98%A4%EC%95%84%EC%8B%9C%EC%8A%A4" target="_blank" class="text-xs font-bold text-blue-700 underline"><i class="fa-solid fa-location-dot mr-1"></i>Naver Map</a>
+                    </div>
+                    <p class="text-sm font-bold text-nici-dark">Club D Oasis Spa (汗蒸幕/水上樂園) ♨️</p>
+                    <p class="text-xs text-nici-dark/70 mt-1">放鬆身心享受無邊際溫泉與韓式汗蒸。</p>
+                </div>
+
+                <div class="bg-nici-beige/40 border-2 border-dashed border-nici-dark/30 p-3.5 rounded-plush">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold text-nici-dark"><i class="fa-solid fa-utensils mr-1"></i>晚餐 Dinner</span>
+                        <span class="text-xs italic text-nici-dark/60">[ 自由挑選美食 / Blank ]</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DAY 2 CONTENT -->
+            <div id="day-content-2" class="day-content space-y-3 mt-2 hidden">
+                <div class="bg-nici-cream/60 border-2 border-nici-dark/20 p-3 rounded-plush-sm flex items-center justify-between text-xs font-semibold">
+                    <span><i class="fa-solid fa-hotel text-nici-dark mr-1"></i>住宿：海雲台地區 (Haeundae)</span>
+                    <span class="bg-nici-yellow text-nici-dark px-2 py-0.5 rounded-full border border-nici-dark/30">Day 2</span>
+                </div>
+
+                <div class="bg-nici-card border-2 border-nici-dark p-4 rounded-plush shadow-plush relative">
+                    <div class="flex items-center justify-between border-b-2 border-dashed border-nici-beige pb-2 mb-2">
+                        <span class="bg-nici-dark text-nici-yellow text-xs font-bold px-2.5 py-1 rounded-full"><i class="fa-solid fa-bus mr-1"></i>09:00 - 10:00</span>
+                        <a href="https://map.naver.com/v5/search/%EC%98%A4%EC%8B%9C%EB%A6%AC%EC%95%84" target="_blank" class="text-xs font-bold text-blue-700 underline"><i class="fa-solid fa-location-dot mr-1"></i>Naver Map</a>
+                    </div>
+                    <p class="text-sm font-bold text-nici-dark">前往奧斯利亞 Osiria 旅遊區 🚌</p>
+                </div>
+
+                <div class="bg-nici-card border-2 border-nici-dark p-4 rounded-plush shadow-plush relative">
+                    <div class="flex items-center justify-between border-b-2 border-dashed border-nici-beige pb-2 mb-2">
+                        <span class="bg-nici-dark text-nici-yellow text-xs font-bold px-2.5 py-1 rounded-full"><i class="fa-solid fa-car-side mr-1"></i>10:00 - 11:30</span>
+                        <a href="https://map.naver.com/v5/search/%EC%8A%A4%EC%B9%B4%EC%9D%B4%EB%9D%BC%EC%9D%B8%20%EB%A3%A8%EC%A7%80%20%EB%B6%80%EC%82%B0" target="_blank" class="text-xs font-bold text-blue-700 underline"><i class="fa-solid fa-location-dot mr-1"></i>Naver Map</a>
+                    </div>
+                    <p class="text-sm font-bold text-nici-dark">Skyline Luge 釜山斜坡滑車 🏎️</p>
+                    <p class="text-xs text-nici-dark/70 mt-1">使用 Visit Busan Pass 體驗刺激斜坡滑車。</p>
+                </div>
+
+                <div class="bg-nici-card border-2 border-nici-dark p-4 rounded-plush shadow-plush relative">
+                    <div class="flex items-center justify-between border-b-2 border-dashed border-nici-beige pb-2 mb-2">
+                        <span class="bg-nici-dark text-nici-yellow text-xs font-bold px-2.5 py-1 rounded-full"><i class="fa-solid fa-cubes mr-1"></i>11:30 - 12:00</span>
+                        <a href="https://map.naver.com/v5/search/%EB%B8%8C%EB%A6%AD%EC%BA%A0%ED%8D%BC%EC%8A%A4%20%EB%B6%80%EC%82%B0" target="_blank" class="text-xs font-bold text-blue-700 underline"><i class="fa-solid fa-location-dot mr-1"></i>Naver Map</a>
+                    </div>
+                    <p class="text-sm font-bold text-nici-dark">Brick Campus 積木主題樂園 🧱</p>
+                </div>
+
+                <div class="bg-nici-beige/40 border-2 border-dashed border-nici-dark/30 p-3.5 rounded-plush">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold text-nici-dark"><i class="fa-solid fa-utensils mr-1"></i>午餐 Lunch</span>
+                        <span class="text-xs italic text-nici-dark/60">[ 自由挑選美食 / Blank ]</span>
+                    </div>
+                </div>
+
+                <div class="bg-nici-yellow/30 border-2 border-nici-dark p-4 rounded-plush shadow-plush relative">
+                    <div class="flex items-center justify-between border-b-2 border-dashed border-nici-dark/20 pb-2 mb-2">
+                        <span class="bg-nici-dark text-nici-yellow text-xs font-bold px-2.5 py-1 rounded-full"><i class="fa-solid fa-ferris-wheel mr-1"></i>13:00 - 16:00</span>
+                        <a href="https://map.naver.com/v5/search/%EB%A1%AF%EB%8D%B0%EC%9B%9C%EB%93%9C%20%EC%95%84%EB%93%9C%EB%B2%A4%EC%B2%98%20%EB%B6%80%EC%82%B0" target="_blank" class="text-xs font-bold text-blue-700 underline"><i class="fa-solid fa-location-dot mr-1"></i>Naver Map</a>
+                    </div>
+                    <p class="text-sm font-bold text-nici-dark">樂天世界冒險樂園 (Lotte World) 🏰</p>
+                    <p class="text-xs font-bold text-red-600 mt-1">⏰ 注意：Visit Busan Pass 24hr 將於 16:30 到期！</p>
+                </div>
+
+                <div class="bg-nici-beige/40 border-2 border-dashed border-nici-dark/30 p-3.5 rounded-plush">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold text-nici-dark"><i class="fa-solid fa-utensils mr-1"></i>晚餐 Dinner</span>
+                        <span class="text-xs italic text-nici-dark/60">[ 自由挑選美食 / Blank ]</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DAY 3 CONTENT -->
+            <div id="day-content-3" class="day-content space-y-3 mt-2 hidden">
+                <div class="bg-nici-cream/60 border-2 border-nici-dark/20 p-3 rounded-plush-sm flex items-center justify-between text-xs font-semibold">
+                    <span><i class="fa-solid fa-hotel text-nici-dark mr-1"></i>住宿：江西區飯店 (Gangseo Hotel)</span>
+                    <span class="bg-nici-yellow text-nici-dark px-2 py-0.5 rounded-full border border-nici-dark/30">Day 3</span>
+                </div>
+
+                <div class="bg-nici-card border-2 border-nici-dark p-4 rounded-plush shadow-plush relative">
+                    <div class="flex items-center justify-between border-b-2 border-dashed border-nici-beige pb-2 mb-2">
+                        <span class="bg-nici-dark text-nici-yellow text-xs font-bold px-2.5 py-1 rounded-full"><i class="fa-solid fa-truck-ramp-box mr-1"></i>上午 Morning</span>
+                    </div>
+                    <p class="text-sm font-bold text-nici-dark">轉移行李至江西區平價飯店 🏨</p>
+                </div>
+
+                <div class="bg-nici-card border-2 border-nici-dark p-4 rounded-plush shadow-plush relative">
+                    <div class="flex items-center justify-between border-b-2 border-dashed border-nici-beige pb-2 mb-2">
+                        <span class="bg-nici-dark text-nici-yellow text-xs font-bold px-2.5 py-1 rounded-full"><i class="fa-solid fa-cable-car mr-1"></i>10:30 - 12:30</span>
+                        <a href="https://map.naver.com/v5/search/%EC%86%A1%EB%8F%84%ED%95%B4%EC%83%81%EC%BC%80%EC%9D%B4%EB%B8%94%EC%B9%B4" target="_blank" class="text-xs font-bold text-blue-700 underline"><i class="fa-solid fa-location-dot mr-1"></i>Naver Map</a>
+                    </div>
+                    <p class="text-sm font-bold text-nici-dark">松島海上纜車 & 龍宮雲橋 🌁</p>
+                    <p class="text-xs text-nici-dark/70 mt-1">跨海纜車俯瞰海景與走訪龍宮吊橋。</p>
+                </div>
+
+                <div class="bg-nici-beige/40 border-2 border-dashed border-nici-dark/30 p-3.5 rounded-plush">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold text-nici-dark"><i class="fa-solid fa-utensils mr-1"></i>午餐 Lunch</span>
+                        <span class="text-xs italic text-nici-dark/60">[ 自由挑選美食 / Blank ]</span>
+                    </div>
+                </div>
+
+                <div class="bg-nici-card border-2 border-nici-dark p-4 rounded-plush shadow-plush relative">
+                    <div class="flex items-center justify-between border-b-2 border-dashed border-nici-beige pb-2 mb-2">
+                        <span class="bg-nici-dark text-nici-yellow text-xs font-bold px-2.5 py-1 rounded-full"><i class="fa-solid fa-camera mr-1"></i>14:30 - 17:30</span>
+                        <a href="https://map.naver.com/v5/search/%EA%B0%90%EC%B2%9C%EB%AC%B8%ED%99%94%EB%A7%88%EC%9D%84" target="_blank" class="text-xs font-bold text-blue-700 underline"><i class="fa-solid fa-location-dot mr-1"></i>Naver Map</a>
+                    </div>
+                    <p class="text-sm font-bold text-nici-dark">甘川文化村 & Flipbook Studio 翻頁書 📸</p>
+                    <p class="text-xs text-nici-dark/70 mt-1">漫步彩色山城拍照，製作獨一無二的手動翻頁相簿。</p>
+                </div>
+
+                <div class="bg-nici-beige/40 border-2 border-dashed border-nici-dark/30 p-3.5 rounded-plush">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold text-nici-dark"><i class="fa-solid fa-utensils mr-1"></i>晚餐 Dinner</span>
+                        <span class="text-xs italic text-nici-dark/60">[ 自由挑選美食 / Blank ]</span>
+                    </div>
+                </div>
+
+                <div class="bg-nici-card border-2 border-nici-dark p-4 rounded-plush shadow-plush relative">
+                    <div class="flex items-center justify-between border-b-2 border-dashed border-nici-beige pb-2 mb-2">
+                        <span class="bg-nici-dark text-nici-yellow text-xs font-bold px-2.5 py-1 rounded-full"><i class="fa-solid fa-door-open mr-1"></i>20:30</span>
+                    </div>
+                    <p class="text-sm font-bold text-nici-dark">江西區飯店 Check-in 🛏️</p>
+                </div>
+            </div>
+
+            <!-- DAY 4 CONTENT -->
+            <div id="day-content-4" class="day-content space-y-3 mt-2 hidden">
+                <div class="bg-nici-cream/60 border-2 border-nici-dark/20 p-3 rounded-plush-sm flex items-center justify-between text-xs font-semibold">
+                    <span><i class="fa-solid fa-hotel text-nici-dark mr-1"></i>住宿：市中心飯店 (City Center Hotel)</span>
+                    <span class="bg-nici-yellow text-nici-dark px-2 py-0.5 rounded-full border border-nici-dark/30">Day 4</span>
+                </div>
+
+                <div class="bg-nici-card border-2 border-nici-dark p-4 rounded-plush shadow-plush relative">
+                    <div class="flex items-center justify-between border-b-2 border-dashed border-nici-beige pb-2 mb-2">
+                        <span class="bg-nici-dark text-nici-yellow text-xs font-bold px-2.5 py-1 rounded-full"><i class="fa-solid fa-suitcase-rolling mr-1"></i>上午 Morning</span>
+                    </div>
+                    <p class="text-sm font-bold text-nici-dark">轉移行李至市中心飯店寄存 🏨</p>
+                </div>
+
+                <div class="bg-nici-card border-2 border-nici-dark p-4 rounded-plush shadow-plush relative">
+                    <div class="flex items-center justify-between border-b-2 border-dashed border-nici-beige pb-2 mb-2">
+                        <span class="bg-nici-dark text-nici-yellow text-xs font-bold px-2.5 py-1 rounded-full"><i class="fa-solid fa-store mr-1"></i>11:00 - 14:30</span>
+                        <a href="https://map.naver.com/v5/search/%EC%8B%A0%EC%84%B8%EA%B3%84%EB%B1%B1%ED%99%94%EC%A0%90%20%EC%84%BC%ED%84%B0%EB%AE%88%EC%8B%DC%ED%8B%B0" target="_blank" class="text-xs font-bold text-blue-700 underline"><i class="fa-solid fa-location-dot mr-1"></i>Naver Map</a>
+                    </div>
+                    <p class="text-sm font-bold text-nici-dark">新世界 Centum City 購物中心 🛒</p>
+                    <p class="text-xs text-nici-dark/70 mt-1">逛全球最大百貨公司，逛街與美食巡禮。</p>
+                </div>
+
+                <div class="bg-nici-beige/40 border-2 border-dashed border-nici-dark/30 p-3.5 rounded-plush">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold text-nici-dark"><i class="fa-solid fa-utensils mr-1"></i>午餐 Lunch</span>
+                        <span class="text-xs italic text-nici-dark/60">[ 百貨美食街 / Blank ]</span>
+                    </div>
+                </div>
+
+                <div class="bg-nici-card border-2 border-nici-dark p-4 rounded-plush shadow-plush relative">
+                    <div class="flex items-center justify-between border-b-2 border-dashed border-nici-beige pb-2 mb-2">
+                        <span class="bg-nici-dark text-nici-yellow text-xs font-bold px-2.5 py-1 rounded-full"><i class="fa-solid fa-train-tram mr-1"></i>15:00 - 16:30</span>
+                        <a href="https://map.naver.com/v5/search/%ED%95%B4%EC%9A%B4%EB%8C%80%EB%B8%94%EB%A3%A8%EB%9D%BC%EC%9D%B8%ED%8C%8C%ED%81%AC" target="_blank" class="text-xs font-bold text-blue-700 underline"><i class="fa-solid fa-location-dot mr-1"></i>Naver Map</a>
+                    </div>
+                    <p class="text-sm font-bold text-nici-dark">尾浦 Blue Line Park 散步 🌊</p>
+                </div>
+
+                <div class="bg-nici-yellow/30 border-2 border-nici-dark p-4 rounded-plush shadow-plush relative">
+                    <div class="flex items-center justify-between border-b-2 border-dashed border-nici-dark/20 pb-2 mb-2">
+                        <span class="bg-nici-dark text-nici-yellow text-xs font-bold px-2.5 py-1 rounded-full"><i class="fa-solid fa-train-subway mr-1"></i>17:30 - 18:00</span>
+                        <span class="text-xs bg-red-500 text-white font-bold px-2 py-0.5 rounded-full">已預約 Reserved</span>
+                    </div>
+                    <p class="text-sm font-bold text-nici-dark">天空膠囊火車 Sky Capsule 🌅</p>
+                    <p class="text-xs text-nici-dark/80 mt-1">欣賞美麗的海岸夕陽美景。</p>
+                </div>
+
+                <div class="bg-nici-beige/40 border-2 border-dashed border-nici-dark/30 p-3.5 rounded-plush">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-bold text-nici-dark"><i class="fa-solid fa-utensils mr-1"></i>晚餐 Dinner</span>
+                        <span class="text-xs italic text-nici-dark/60">[ 自由挑選美食 / Blank ]</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DAY 5 CONTENT -->
+            <div id="day-content-5" class="day-content space-y-3 mt-2 hidden">
+                <div class="bg-nici-cream/60 border-2 border-nici-dark/20 p-3 rounded-plush-sm flex items-center justify-between text-xs font-semibold">
+                    <span><i class="fa-solid fa-plane-departure text-nici-dark mr-1"></i>Wonka 返港 / Sky 自由行程</span>
+                    <span class="bg-nici-yellow text-nici-dark px-2 py-0.5 rounded-full border border-nici-dark/30">Day 5</span>
+                </div>
+
+                <!-- Wonka Flight Notice -->
+                <div class="bg-red-50 border-2 border-red-400 p-4 rounded-plush shadow-plush">
+                    <div class="flex items-center space-x-2 text-red-800 font-bold text-sm mb-1">
+                        <i class="fa-solid fa-plane-departure"></i>
+                        <span>Wonka 回程航班資訊</span>
+                    </div>
+                    <p class="text-xs text-red-700">05:30 飯店 Checkout 辦理退房 ➔ 前往金海機場</p>
+                    <p class="text-xs text-red-700 font-bold mt-1">✈️ 香港快運 UO 航班 07:45 起飛返港</p>
+                </div>
+
+                <!-- Sky Day 5 Free Schedule -->
+                <div class="bg-nici-card border-2 border-nici-dark p-4 rounded-plush shadow-plush">
+                    <div class="flex items-center justify-between border-b-2 border-dashed border-nici-beige pb-2 mb-2">
+                        <span class="bg-nici-dark text-nici-yellow text-xs font-bold px-2.5 py-1 rounded-full">Sky Day 5 全天</span>
+                        <span class="text-xs text-nici-dark/60 font-bold"><i class="fa-solid fa-hotel mr-1"></i>住宿：市中心飯店</span>
+                    </div>
+                    <p class="text-sm font-bold text-nici-dark">Sky 個人自由探索行程 🐒✨</p>
+                    <div class="mt-4 p-6 bg-nici-beige/30 rounded-plush border-2 border-dashed border-nici-dark/20 text-center">
+                        <i class="fa-solid fa-compass text-3xl text-nici-mid/40 mb-2"></i>
+                        <p class="text-xs text-nici-dark/60 italic">[ 預留空白自由發揮 / Free Day ]</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DAY 6 CONTENT -->
+            <div id="day-content-6" class="day-content space-y-3 mt-2 hidden">
+                <div class="bg-nici-cream/60 border-2 border-nici-dark/20 p-3 rounded-plush-sm flex items-center justify-between text-xs font-semibold">
+                    <span><i class="fa-solid fa-plane-departure text-nici-dark mr-1"></i>Sky 最終日 / 晚上返港</span>
+                    <span class="bg-nici-yellow text-nici-dark px-2 py-0.5 rounded-full border border-nici-dark/30">Day 6</span>
+                </div>
+
+                <div class="bg-nici-card border-2 border-nici-dark p-4 rounded-plush shadow-plush">
+                    <div class="flex items-center justify-between border-b-2 border-dashed border-nici-beige pb-2 mb-2">
+                        <span class="bg-nici-dark text-nici-yellow text-xs font-bold px-2.5 py-1 rounded-full">Sky Day 6 白天</span>
+                    </div>
+                    <p class="text-sm font-bold text-nici-dark">Sky 自由探索 & 最後採買 🛍️️</p>
+                    <div class="mt-3 p-6 bg-nici-beige/30 rounded-plush border-2 border-dashed border-nici-dark/20 text-center">
+                        <i class="fa-solid fa-bag-shopping text-3xl text-nici-mid/40 mb-2"></i>
+                        <p class="text-xs text-nici-dark/60 italic">[ 預留空白自由發揮 / Free Day ]</p>
+                    </div>
+                </div>
+
+                <div class="bg-nici-dark text-nici-cream p-4 rounded-plush shadow-plush border-2 border-nici-dark">
+                    <div class="flex items-center justify-between border-b border-nici-mid pb-2 mb-2">
+                        <span class="bg-nici-yellow text-nici-dark text-xs font-bold px-2.5 py-1 rounded-full"><i class="fa-solid fa-plane-departure mr-1"></i>21:50</span>
+                        <span class="text-xs text-nici-yellow">德威航空 TW639</span>
+                    </div>
+                    <p class="text-sm font-bold text-nici-yellow">Sky 啟程返港 ✈️</p>
+                    <p class="text-xs text-nici-beige mt-1">前往金海機場辦理登機，結束美好的釜山 6 天之旅！</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: WEATHER TAB -->
+        <section id="tab-weather" class="tab-content">
+            <div class="bg-nici-card border-2 border-nici-dark p-5 rounded-plush shadow-plush">
+                <div class="flex items-center justify-between mb-3 border-b-2 border-dashed border-nici-beige pb-2">
+                    <h2 class="font-bold text-lg text-nici-dark"><i class="fa-solid fa-cloud-sun text-nici-banana mr-2"></i>釜山 10 月天氣預報</h2>
+                    <span class="text-xs bg-nici-yellow text-nici-dark font-bold px-2.5 py-1 rounded-full">10/8 - 10/13</span>
+                </div>
+
+                <!-- Weather Outfit Tip -->
+                <div class="bg-nici-cream/80 border border-nici-dark/20 p-3 rounded-plush-sm mb-4 text-xs">
+                    <p class="font-bold text-nici-dark mb-1"><i class="fa-solid fa-shirt text-nici-dark mr-1"></i>秋季洋蔥式穿搭建議：</p>
+                    <p class="text-nici-dark/80">10 月釜山秋高氣爽，平均氣溫約 <strong>13°C - 23°C</strong>，早晚溫差較大。建議準備薄長袖、輕便外套或薄圍巾方便隨時穿脫！</p>
+                </div>
+
+                <!-- 6 Days Weather Grid -->
+                <div class="grid grid-cols-2 gap-2.5 mb-4">
+                    <div class="bg-nici-bg p-3 rounded-plush-sm border border-nici-dark/15 text-center">
+                        <p class="text-xs font-bold text-nici-dark">10/8 (三)</p>
+                        <i class="fa-solid fa-sun text-2xl text-amber-500 my-1.5"></i>
+                        <p class="text-xs font-bold">14°C - 22°C</p>
+                        <p class="text-[10px] text-nici-dark/60">晴朗舒適</p>
+                    </div>
+
+                    <div class="bg-nici-bg p-3 rounded-plush-sm border border-nici-dark/15 text-center">
+                        <p class="text-xs font-bold text-nici-dark">10/9 (四)</p>
+                        <i class="fa-solid fa-cloud-sun text-2xl text-amber-500 my-1.5"></i>
+                        <p class="text-xs font-bold">15°C - 23°C</p>
+                        <p class="text-[10px] text-nici-dark/60">多雲時晴</p>
+                    </div>
+
+                    <div class="bg-nici-bg p-3 rounded-plush-sm border border-nici-dark/15 text-center">
+                        <p class="text-xs font-bold text-nici-dark">10/10 (五)</p>
+                        <i class="fa-solid fa-sun text-2xl text-amber-500 my-1.5"></i>
+                        <p class="text-xs font-bold">13°C - 21°C</p>
+                        <p class="text-[10px] text-nici-dark/60">微風晴朗</p>
+                    </div>
+
+                    <div class="bg-nici-bg p-3 rounded-plush-sm border border-nici-dark/15 text-center">
+                        <p class="text-xs font-bold text-nici-dark">10/11 (六)</p>
+                        <i class="fa-solid fa-cloud text-2xl text-slate-400 my-1.5"></i>
+                        <p class="text-xs font-bold">14°C - 22°C</p>
+                        <p class="text-[10px] text-nici-dark/60">陰天多雲</p>
+                    </div>
+
+                    <div class="bg-nici-bg p-3 rounded-plush-sm border border-nici-dark/15 text-center">
+                        <p class="text-xs font-bold text-nici-dark">10/12 (日)</p>
+                        <i class="fa-solid fa-sun text-2xl text-amber-500 my-1.5"></i>
+                        <p class="text-xs font-bold">13°C - 20°C</p>
+                        <p class="text-[10px] text-nici-dark/60">秋高氣爽</p>
+                    </div>
+
+                    <div class="bg-nici-bg p-3 rounded-plush-sm border border-nici-dark/15 text-center">
+                        <p class="text-xs font-bold text-nici-dark">10/13 (一)</p>
+                        <i class="fa-solid fa-cloud-sun text-2xl text-amber-500 my-1.5"></i>
+                        <p class="text-xs font-bold">12°C - 21°C</p>
+                        <p class="text-[10px] text-nici-dark/60">氣溫微降</p>
+                    </div>
+                </div>
+
+                <!-- KMA Forecast Button -->
+                <a href="https://www.kma.go.kr/neng/forecast/short-term.do" target="_blank" class="block w-full text-center bg-nici-dark text-nici-yellow font-bold py-3 px-4 rounded-plush-sm shadow-nici-btn hover:translate-y-0.5 active:translate-y-1 transition-all border-2 border-nici-dark text-sm">
+                    <i class="fa-solid fa-arrow-up-right-from-square mr-1"></i> 韓國氣象廳 (KMA) 官方即時預報
+                </a>
+            </div>
+        </section>
+
+        <!-- SECTION 3: PACKING LIST TAB -->
+        <section id="tab-packing" class="tab-content">
+            <div class="bg-nici-card border-2 border-nici-dark p-5 rounded-plush shadow-plush">
+                <div class="flex items-center justify-between mb-3 border-b-2 border-dashed border-nici-beige pb-2">
+                    <h2 class="font-bold text-lg text-nici-dark"><i class="fa-solid fa-clipboard-list text-nici-banana mr-2"></i>行前行李準備清單</h2>
+                    <span id="packing-progress" class="text-xs bg-nici-dark text-nici-yellow font-bold px-2.5 py-1 rounded-full">0/28</span>
+                </div>
+
+                <div class="space-y-2 text-sm" id="packing-list-container">
+                    <!-- Items rendered dynamically via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: CURRENCY CALCULATOR TAB -->
+        <!-- STREAMING_CHUNK: Building HKD -> KRW Currency Calculator -->
+        <section id="tab-currency" class="tab-content">
+            <div class="bg-nici-card border-2 border-nici-dark p-5 rounded-plush shadow-plush">
+                <div class="flex items-center justify-between mb-4 border-b-2 border-dashed border-nici-beige pb-2">
+                    <h2 class="font-bold text-lg text-nici-dark"><i class="fa-solid fa-calculator text-nici-banana mr-2"></i>匯率計算器 (HKD ➔ KRW)</h2>
+                    <span class="text-xs bg-nici-yellow text-nici-dark font-bold px-2 py-0.5 rounded-full border border-nici-dark/20">韓元換算</span>
+                </div>
+
+                <!-- Rate Setting Card -->
+                <div class="bg-nici-cream/50 p-3 rounded-plush-sm border border-nici-dark/20 mb-4">
+                    <label class="block text-xs font-bold text-nici-dark mb-1">自訂匯率 (1 HKD 等於多少 KRW)：</label>
+                    <div class="flex items-center space-x-2">
+                        <span class="text-xs font-bold">1 HKD =</span>
+                        <input type="number" id="exchange-rate" value="170.0" step="0.1" oninput="calculateCurrency()" class="w-full p-2 bg-white rounded-lg border-2 border-nici-dark text-sm font-bold text-nici-dark focus:outline-none focus:ring-2 focus:ring-nici-yellow">
+                        <span class="text-xs font-bold">KRW</span>
+                    </div>
+                </div>
+
+                <!-- Input Amount -->
+                <div class="space-y-3">
+                    <div>
+                        <label class="block text-xs font-bold text-nici-dark mb-1">港幣金額 (HKD $)：</label>
+                        <div class="relative">
+                            <span class="absolute left-3 top-2.5 text-nici-dark/50 font-bold">$</span>
+                            <input type="number" id="hkd-amount" value="100" oninput="calculateCurrency()" class="w-full pl-7 pr-3 py-2 bg-white rounded-lg border-2 border-nici-dark text-lg font-bold text-nici-dark focus:outline-none focus:ring-2 focus:ring-nici-yellow">
+                        </div>
+                    </div>
+
+                    <!-- Quick Preset Buttons -->
+                    <div class="grid grid-cols-4 gap-2">
+                        <button onclick="setAmount(50)" class="py-1.5 bg-nici-beige hover:bg-nici-cream text-nici-dark font-bold text-xs rounded-lg border border-nici-dark/30 transition-all">$50</button>
+                        <button onclick="setAmount(100)" class="py-1.5 bg-nici-beige hover:bg-nici-cream text-nici-dark font-bold text-xs rounded-lg border border-nici-dark/30 transition-all">$100</button>
+                        <button onclick="setAmount(500)" class="py-1.5 bg-nici-beige hover:bg-nici-cream text-nici-dark font-bold text-xs rounded-lg border border-nici-dark/30 transition-all">$500</button>
+                        <button onclick="setAmount(1000)" class="py-1.5 bg-nici-beige hover:bg-nici-cream text-nici-dark font-bold text-xs rounded-lg border border-nici-dark/30 transition-all">$1000</button>
+                    </div>
+
+                    <!-- Result Box -->
+                    <div class="bg-nici-dark text-nici-cream p-4 rounded-plush-sm border-2 border-nici-dark text-center mt-4 shadow-sm">
+                        <p class="text-xs text-nici-beige font-medium">大約折合韓幣 (KRW)</p>
+                        <p id="krw-result" class="text-3xl font-bold text-nici-yellow my-1">₩ 17,000</p>
+                        <p class="text-[10px] text-nici-beige/70">（實際換匯依現場明洞/釜山換錢所為準）</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <nav class="fixed bottom-3 left-0 right-0 max-w-md mx-auto px-3 z-50">
+        <div class="bg-nici-dark text-nici-cream p-2 rounded-full shadow-2xl border-4 border-nici-dark flex justify-around items-center">
+            <button onclick="switchTab('itinerary')" id="nav-itinerary" class="nav-btn active flex-1 flex flex-col items-center py-1 rounded-full text-nici-yellow font-bold text-xs transition-all">
+                <i class="fa-solid fa-calendar-day text-lg mb-0.5"></i>
+                <span>行程</span>
+            </button>
+
+            <button onclick="switchTab('weather')" id="nav-weather" class="nav-btn flex-1 flex flex-col items-center py-1 rounded-full text-nici-beige/60 hover:text-nici-cream font-bold text-xs transition-all">
+                <i class="fa-solid fa-cloud-sun text-lg mb-0.5"></i>
+                <span>天氣</span>
+            </button>
+
+            <button onclick="switchTab('packing')" id="nav-packing" class="nav-btn flex-1 flex flex-col items-center py-1 rounded-full text-nici-beige/60 hover:text-nici-cream font-bold text-xs transition-all">
+                <i class="fa-solid fa-list-check text-lg mb-0.5"></i>
+                <span>行李</span>
+            </button>
+
+            <button onclick="switchTab('currency')" id="nav-currency" class="nav-btn flex-1 flex flex-col items-center py-1 rounded-full text-nici-beige/60 hover:text-nici-cream font-bold text-xs transition-all">
+                <i class="fa-solid fa-coins text-lg mb-0.5"></i>
+                <span>匯率</span>
+            </button>
+        </div>
+    </nav>
+
+    <script>
+        // Item List Array
+        const packingItems = [
+            "Passport", "HKID", "insurance", "cash", "sunscreen", "moisterizer",
+            "mosquito repellent", "hand sanitizer", "mopidik", "sardlungbasi",
+            "bodywash", "shampoo", "conditioner", "toothbrush toothpaste",
+            "big towel", "mgun", "暈浪丸", "medicine",
+            "clothes (pants, jacket, cap, sunglasses, socks, bra, underwear, pajamas, scarf)",
+            "airpods", "plug adaptor", "charger, charging wires", "tissue",
+            "slippers", "handcarry bag & small gip", "shopping bag", "plastic bag", "umbrella"
+        ];
+
+        // Init Packing Checklist with LocalStorage persistence
+        function initPackingList() {
+            const container = document.getElementById('packing-list-container');
+            const savedStates = JSON.parse(localStorage.getItem('busan_packing_state') || '{}');
+            
+            container.innerHTML = '';
+            packingItems.forEach((item, index) => {
+                const isChecked = savedStates[index] || false;
+                const div = document.createElement('div');
+                div.className = "flex items-center p-2.5 bg-nici-bg rounded-plush-sm border border-nici-dark/15 hover:bg-nici-cream/40 transition-colors";
+                div.innerHTML = `
+                    <input type="checkbox" id="pack-${index}" ${isChecked ? 'checked' : ''} onchange="togglePackItem(${index})" class="nici-checkbox w-5 h-5 accent-nici-dark rounded border-2 border-nici-dark mr-3 cursor-pointer">
+                    <label for="pack-${index}" class="text-xs font-bold text-nici-dark cursor-pointer flex-1 leading-snug">${item}</label>
+                `;
+                container.appendChild(div);
+            });
+            updatePackingProgress();
+        }
+
+        function togglePackItem(index) {
+            const savedStates = JSON.parse(localStorage.getItem('busan_packing_state') || '{}');
+            const checkbox = document.getElementById(`pack-${index}`);
+            savedStates[index] = checkbox.checked;
+            localStorage.setItem('busan_packing_state', JSON.stringify(savedStates));
+            updatePackingProgress();
+        }
+
+        function updatePackingProgress() {
+            const savedStates = JSON.parse(localStorage.getItem('busan_packing_state') || '{}');
+            const count = Object.values(savedStates).filter(Boolean).length;
+            document.getElementById('packing-progress').innerText = `${count}/${packingItems.length}`;
+        }
+
+        // Tab Switching
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('text-nici-yellow');
+                btn.classList.add('text-nici-beige/60');
+            });
+
+            document.getElementById(`tab-${tabId}`).classList.add('active');
+            const activeBtn = document.getElementById(`nav-${tabId}`);
+            activeBtn.classList.remove('text-nici-beige/60');
+            activeBtn.classList.add('text-nici-yellow');
+        }
+
+        // Day Switching in Itinerary
+        function switchDay(dayNum) {
+            document.querySelectorAll('.day-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.day-btn').forEach(btn => {
+                btn.classList.remove('bg-nici-dark', 'text-nici-yellow');
+                btn.classList.add('bg-nici-cream', 'text-nici-dark');
+            });
+
+            document.getElementById(`day-content-${dayNum}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`day-btn-${dayNum}`);
+            activeBtn.classList.remove('bg-nici-cream', 'text-nici-dark');
+            activeBtn.classList.add('bg-nici-dark', 'text-nici-yellow');
+        }
+
+        // Currency Calculator Functions
+        function calculateCurrency() {
+            const rate = parseFloat(document.getElementById('exchange-rate').value) || 170.0;
+            const hkd = parseFloat(document.getElementById('hkd-amount').value) || 0;
+            const krw = Math.round(hkd * rate);
+            document.getElementById('krw-result').innerText = '₩ ' + krw.toLocaleString();
+        }
+
+        function setAmount(val) {
+            document.getElementById('hkd-amount').value = val;
+            calculateCurrency();
+        }
+
+        // On Load Init
+        window.onload = function() {
+            initPackingList();
+            calculateCurrency();
+        };
+    </script>
+</body>
+</html>
